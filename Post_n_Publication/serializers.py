@@ -6,7 +6,7 @@ from Post_n_Publication.models import Publication, Project
 class publicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ("publication",)
+        fields = "__all__"
 
 
 class projectSerializer(serializers.ModelSerializer):

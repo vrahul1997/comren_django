@@ -10,6 +10,7 @@ class Publication(models.Model):
     )
     publication_short = models.CharField(max_length=100, unique=True)
     publication = models.TextField(max_length=300)
+    publication_link = models.TextField(max_length=300, default="#")
 
     class Meta:
         db_table = "comren_publications"
@@ -21,10 +22,14 @@ class Project(models.Model):
     """Projects Db collection"""
 
     uid = ShortUUIDField(
-        unique=True, max_length=22, help_text="Publication UUID", db_index=True
+        primary_key=True,
+        unique=True,
+        max_length=22,
+        help_text="Publication UUID",
+        db_index=True,
     )
     project_name = models.TextField(max_length=200)
-    project_url = models.TextField(max_length=400)
+    project_url = models.TextField(max_length=400, default="#")
 
     class Meta:
         db_table = "comren_projects"

@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-o-lx@vitoz+(#=u4lu&4jfsf#=97edzm-(synezi#b+o=pd@__"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -79,11 +84,18 @@ WSGI_APPLICATION = "comren.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+PASSWORD = os.getenv("MONGO_PASSWORD")
+
 DATABASES = {
     "default": {
         "ENGINE": "djongo",
-        "NAME": "comren_db",
-
+        "CLIENT": {
+            "name": "comren_db",
+            "host": f"mongodb+srv://rahulll:{PASSWORD}@cluster0.yi5li.mongodb.net/comren_db?retryWrites=true&w=majority",
+            "username": "rahulll",
+            "password": "Ichleibedich4",
+            "authMechanism": "SCRAM-SHA-1",
+        },
     }
 }
 
@@ -118,7 +130,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost"]
 
 
 # Cross origin resource sharing
@@ -135,6 +147,7 @@ CORS_ALLOW_CREDENTIALS = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

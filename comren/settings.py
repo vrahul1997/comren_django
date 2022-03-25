@@ -130,7 +130,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "glacial-caverns-39747.herokuapp.com"]
 
 
 # Cross origin resource sharing
